@@ -1,0 +1,12 @@
+<!-- templates/registration/login.html -->
+<h2 style="text-align:center;">Elegir usuario</h2>
+<form style="text-align:center;" method="post" action="/login">
+  {% csrf_token %}
+    <select name="username">
+      <option value="Francisco">Francisco</option>
+      <option value="Rocio">Rocio</option>
+      <option value="Franco">Franco</option>
+    </select>
+    <input type="password" maxlength = "24" name="password" id="pwd">
+    <input type="submit" value="Entrar">
+</form>

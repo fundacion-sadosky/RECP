@@ -1,0 +1,214 @@
+{% load static %}
+<html>
+    <head lang="en">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Anotaciones - Tesis</title>
+        <link rel="stylesheet" media="all" href="{%  static  'css/mumuki_style.css' %}" data-turbolinks-track="reload" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <p style="margin-top: 15px;">
+                    <span class="label label-default">ID de conversación actual: {{mumuki_id}}</span>
+                </p>
+                <p style="margin-top: 15px;">
+                    <span class="label label-default">Anotación N. {{id}}</span>
+                </p>
+                <p style="margin-top: 15px;">
+                    <span class="label label-default">Anotado de la meta global: {{user_done}}%</span>
+                </p>
+            </div>
+        </div>
+
+        <form method='post' action='/eval'>
+            <div class="discussion-message" style="position: sticky; top: 0px; z-index: 99;">
+                <div class="discussion-message-bubble-container">
+                    <div class="discussion-message-bubble">
+                        <div class="discussion-message-bubble-header">
+                            <div class="discussion-message-bubble-title">
+                                <b>Primera oración elegida</b> 
+                            </div>
+                        </div>
+                        <div class="discussion-message-bubble-content">
+                            <div class="discussion-message-content">
+                                <p>{{sent_ok |safe}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="width: 70%;">
+                <div class="row" style="margin-top: 25px;">
+                    <fieldset>
+                        <legend>1. Redacción; calidad sintáctica y semántica de la oración. Sin ver el contexto en que se escribió, ¿Es correcta y sintácticamente completa? ¿Presenta errores de ortografía, gramática o algún otro problema que dificulte su comprensión?</legend>
+                        <div>
+                            <input type="radio" id="semantic-1" name="semantic" value="1"/>
+                            <label for="semantic-1">Calidad mala</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="semantic-2" name="semantic" value="2" checked/>
+                            <label for="semantic-2">Calidad regular</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="semantic-3" name="semantic" value="3"/>
+                            <label for="semantic-3">Calidad buena</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="container" style="width: 70%;">
+                <div class="row" style="margin-top: 25px;">
+                    <fieldset>
+                        <legend>2. Contenido de la oración. Sin ver el contexto en que se escribió, ¿Qué grado de utilidad presenta su contenido? ¿Motivaría al estudiante a seguir leyendo? Esto podría incluir la completitud de dicho contenido, la cual recupera en detalle en el siguiente punto.</legend>
+                        <div>
+                            <input type="radio" id="content-1" name="content" value="1"/>
+                            <label for="content-1">No es útil</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="content-2" name="content" value="2" checked/>
+                            <label for="content-2">Regular</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="content-3" name="content" value="3"/>
+                            <label for="content-3">Es útil</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="container" style="width: 70%;">
+                <div class="row" style="margin-top: 25px;">
+                    <fieldset>
+                        <legend>2.5. Alcance del contenido. Agregando sobre el punto anterior, ¿Es autocontenida, o parece depender de las ideas expresadas en otras oraciones? Pensar en los detalles que podrían faltar (evidentes en referencias como deícticos o conectores discursivos) para terminar de definir la idea que se quiere transmitir.</legend>
+                        <div>
+                            <input type="radio" id="completeness-1" name="completeness" value="1"/>
+                            <label for="completeness-1">Le falta sentido sin su contexto</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="completeness-2" name="completeness" value="2" checked/>
+                            <label for="completeness-2">Contiene referencias o está incompleta</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="completeness-3" name="completeness" value="3"/>
+                            <label for="completeness-3">Es autocontenida</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="discussion-message" style="margin: auto;">
+                <h4>Conversación (sólo mensajes de mentores)</h4>
+            </div>
+            {% for message in messages %}
+            <div class="discussion-message">
+                <div class="discussion-message-user-avatar">
+                    <img height="40" class="img-circle " src="https://mumuki.io/assets/avatars/grown_ups/pencil_default-7e8ee0d2acb97d805d5e1c5bcd00c93772fa4b08238d70f926745c46b4089142.png" alt="Pencil default" />
+                </div>
+                <div class="discussion-message-bubble-container">
+                    <div class="discussion-message-bubble">
+                        <div class="discussion-message-bubble-content">
+                            <div class="discussion-message-content">
+                                <span>{{message |safe}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="container" style="width: 70%;">
+                <div class="row" style="margin-top: 25px;">
+                    <fieldset>
+                        <legend>3. Resumen. Teniendo la conversación original como referencia, ¿Qué tan relevante es dentro de su contexto? ¿Representa apropiadamente alguna de las temáticas abordadas?</legend>
+                        <div>
+                            <input type="radio" id="summary-1" name="summary" value="1"/>
+                            <label for="summary-1">Irrelevante</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="summary-2" name="summary" value="2" checked/>
+                            <label for="summary-2">Medianamente relevante</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="summary-3" name="summary" value="3"/>
+                            <label for="summary-3">Relevante</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="discussion-message">
+                <div class="discussion-message-bubble-container">
+                    <div class="discussion-message-bubble">
+                        <div class="discussion-message-bubble-header">
+                            <div class="discussion-message-bubble-title">.
+                                <b>Primera oración rechazada</b> 
+                            </div>
+                        </div>
+                        <div class="discussion-message-bubble-content">
+                            <div class="discussion-message-content">
+                                <p>{{sent_rej |safe}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="width: 70%;">
+                <div class="row" style="margin-top: 25px;">
+                    <fieldset>
+                        <legend>5. Comparativa. Con la conversación completa como referencia, ¿Cuál oración (la aceptada o la rechazada) funciona mejor como resumen/síntesis?</legend>
+                        <div>
+                            <input type="radio" id="comparison-1" name="comparison" value="1"/>
+                            <label for="comparison-1">La oración rechazada es mejor</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="comparison-2" name="comparison" value="2" checked/>
+                            <label for="comparison-2">Ambas oraciones reciben el mismo puntaje</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="comparison-3" name="comparison" value="3"/>
+                            <label for="comparison-3">La oración aceptada es mejor</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-top: 25px; margin-left: auto; margin-right: auto; display: table;">
+                <div class="col-lg-5 col-xs-12">
+                    <button style="height:50px;width:200px;font-weight:bold" type="submit" class="btn btn-block btn-success btn-solve" value="{{mumuki_id}}" name="submit_button_click">Guardar</button>
+                </div>
+            </div>
+            {% csrf_token %}
+        </form>
+
+        <div class="container"> 
+            <div class="row">
+                <div>
+                    <a style="width:100px" type="submit" class="btn btn-block btn-warning btn-solve" value="" href="/tutorial" name="">Tutorial</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container"> 
+            <div class="row">
+                <div>
+                    <form method='post' action='/logout'>
+                        {% csrf_token %}
+                        <button style="width:100px" type="submit" class="btn btn-block btn-warning btn-solve" value="" href="" name="">Salir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,247 @@
+{% load static %}
+<html>
+    <head lang="en">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Anotaciones - Tesis</title>
+        <link rel="stylesheet" media="all" href="{%  static  'css/mumuki_style.css' %}" data-turbolinks-track="reload" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <h2>Tutorial</h2>
+            </div>
+        </div>
+
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <p>Basamos nuestra extracción de oraciones en una extracción previa de palabras clave, ambas en base a lo que llamamos <em>conversación</em>, que es el hilo entero de mensajes de respuesta asociados a una consulta. Para esta evaluación utilizamos sólo los mensajes escritos por mentores/tutores.</p>
+                <p>Separamos cada anotación en 4 puntos independientes (con un sub-ítem), o consignas, cada uno de tipo <em>multiple-choice</em> utilizando una escala de <em>Likert</em> de 1-3, donde 1 sería el "peor" caso, y 3 el "mejor". Los 2 primeros tratan de la oración con mayor puntaje que, según nuestro sistema de extracción, debería representar algún punto importante de la conversación. Estos puntos no deberían verse afectados por la conversación completa; esta se usa como dato solamente para los puntos 3 y 4; adicionalmente, el último punto presenta la oración con más puntaje de las que rechazamos, en última instancia, por diversas razones.</p>
+                <p>Tener en cuenta que estas conversaciones fueron previamente procesadas para cumplir ciertas condiciones de normalización; en primer lugar, los bloques de código insertados en formato <em>Markdown</em> fueron removidos, por lo que referencias a dichos fragmentos podrían carecer de contexto. En un caso así, siendo que estamos focalizándonos en el lenguaje natural (y que planeamos mostrar estas oraciones en una interfaz), es correcto suponer que ese contexto no existe (al igual que el código adjunto del estudiante). Lo mismo sucede con referencias a mensajes de estudiantes. Algunos caracteres de sintaxis Markdown se ven reflejados en la conversación, pero no en las oraciones separadas. Por último, notar que las oraciones están truncadas en 200 caracteres; esto representa apropiadamente la manera en que se mostrarán en la interfaz, y también puede implicar una falta de contexto (no sería correcto asumir que la oración completa sí es "útil").</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <h3>Consignas</h3>
+            </div>
+        </div>
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <p><b>1. Redacción</b>; calidad sintáctica y semántica de la oración aceptada. Sin ver el contexto en que se escribió, ¿Es correcta y sintácticamente completa? ¿Presenta errores de ortografía, gramática o algún otro problema que dificulte su comprensión?</p>
+                <p>Nos referimos con <em>sintáctica</em> a la cohesión entre las palabras y sus roles en la oración (incluyendo su completitud), mientras que la <em>semántica</em> hace referencia al significado coherente de la misma (sin incluir su completitud, puesto que eso se ve en el punto 2.5). Las oraciones que están truncadas no deberían perder puntaje por ello.</p>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración bien escrita</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>Entonces, para sacar el promedio, contamos con la función `promedio` que recibe como argumento una lista de números e internamente obtiene el promedio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración con semántica pobre/confusa</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>Entonces, con la sola expresión de no es mayor de edad, ya lo tendríamos resuelto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <p><b>2. Contenido de la oración.</b> Sin ver el contexto en que se escribió, ¿Qué grado de utilidad presenta su contenido? ¿Motivaría al estudiante a seguir leyendo? Esto podría incluir la completitud de dicho contenido, la cual recupera en detalle en el siguiente punto.</p>
+                <p>No distinguimos aquí entre la relevancia educativa de cada contenido; una oración que resuelva el problema/error del estudiante llamará la atención en el futuro, aunque no explique a fondo los conceptos asociados. No obstante, una oración que sólo mencione el error podría no aportar contenido de ningún tipo. También hay oraciones que hablan de conceptos sueltos, los cuales podrían ser útiles para <em>otro</em> estudiante que no sabe de antemano de qué error se está hablando (lo cual apunta a nuestro interés particular).</p>
+                <p>Las referencias externas pueden restar utilidad; no obstante, si estas referencias son al código adjunto del estudiante (el contexto <em>global</em> de la consulta), no debería penalizarse tanto como en el siguiente punto.</p>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración con contenido</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>En este caso, alguien se podrá jubilar si es mayor a la edad que le corresponde según su sexo, y si tiene más de 30 años de aportes; pero en el código que enviaste se fija si es menor que la edad: `edad &lt= 60` por ejemplo, y si tiene menos aportes: `añosDeAportes &lt= 30`.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración sin contenido</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>Recorda que si queda alguna duda podés compartirnos en un comentario el código que hayas probado así podemos guiarte mejor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <p><b>2.5. Alcance del contenido.</b> Agregando sobre el punto anterior, ¿Es autocontenida, o parece depender de las ideas expresadas en otras oraciones? Pensar en los detalles que podrían faltar (evidentes en referencias como deícticos o conectores discursivos) para terminar de definir la idea que se quiere transmitir.</p>
+                <p>Este punto era originalmente parte del punto anterior, y puede funcionar para explayar el razonamiento del mismo; por ejemplo, cuando se estableció que la oración no tiene utilidad (lo cual puede suceder porque no es autocontenida, pero puede haber otras razones también). Por otro lado, aunque tenga poco contenido, una oración podría ser cerrada en su significado, sin referenciar a contenido externo.</p>
+                <p>Dos estructuras importantes que sugieren una falta de conexto son los deícticos ("vos", "él", "tu", "suyo", "allí", "ahí", "hoy", "ayer") y los conectores discursivos ("Por otro lado", "No obstante", "Efectivamente", "Por eso", "En primer lugar"). Adicionalmente, una oración truncada podría perder una parte importante de su significado.</p>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración autocontenida</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>Queda solo un detalle: en la función `afortunados`, estamos retornando una lista a la que le fuimos agregando los registros, pero nunca estamos declarando esa lista .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración no autocontenida</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>En esta función no necesitamos tener cuatro parámetros, nos alcanza con los primeros tres(`titulo,nombre,apellido`).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <p><b>3. Resumen.</b> Teniendo la conversación original como referencia, ¿Qué tan relevante es dentro de su contexto? ¿Representa apropiadamente alguna de las temáticas abordadas?</p>
+                <p>Aquí tenemos en cuenta la significancia del contenido, más allá de su existencia. Una oración que solucione el problema/error del estudiante es ciertamente relevante, pero desde nuestra perspectiva pedagógica, es preferible una oración que describa los conceptos asociados.</p>
+            </div>
+        </div>
+        <div class="discussion-message" style="margin: auto;">
+            <h4>Conversación de ejemplo</h4>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-user-avatar">
+                <img height="40" class="img-circle " src="https://mumuki.io/assets/avatars/grown_ups/pencil_default-7e8ee0d2acb97d805d5e1c5bcd00c93772fa4b08238d70f926745c46b4089142.png" alt="Pencil default" />
+            </div>
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <span>Hola Vilma Angelina. ¿Cómo estás?<br>
+                                Fijate que en el Resultado te plantean lo siguiente:<br>
+                                * Para resolver este ejercicio recordá que contás con `posicion`.<br>
+                                En la solapa Biblioteca encontramos esto sobre dicha función:<br>
+                                Entonces, sabiendo lo que retorna la función cuando el elemento no está en la lista, modificá tu solución para que utilice `posición` y haga la comparación pertinente. Recordá que la lista va a contener el elemento si la función retorna un valor distinto al que indica cuando no lo contiene.<br>
+                                Cualquier duda volvé a consultar y lo seguimos viendo. ¡Saludos!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración relevante</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>Entonces, sabiendo lo que retorna la función cuando el elemento no está en la lista, modificá tu solución para que utilice `posición` y haga la comparación pertinente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discussion-message">
+            <div class="discussion-message-bubble-container">
+                <div class="discussion-message-bubble">
+                    <div class="discussion-message-bubble-header">
+                        <div class="discussion-message-bubble-title">
+                            <b>Ejemplo de oración irrelevante</b> 
+                        </div>
+                    </div>
+                    <div class="discussion-message-bubble-content">
+                        <div class="discussion-message-content">
+                            <p>Cualquier duda volvé a consultar y lo seguimos viendo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container" style="width: 70%;">
+            <div class="row" style="margin-top: 25px;">
+                <p><b>4. Comparativa.</b> Con la conversación completa como referencia, ¿Cuál oración (la aceptada o la rechazada) funciona mejor como resumen/síntesis?</p>
+                <p>Aquí se recopilan los puntos anteriores para determinar el puntaje global de la oración rechazada (siendo que es la <em>primera</em>, originalmente también tenía un puntaje alto) en comparación con la aceptada. Si la oración aceptada no es útil y la rechazada tampoco, dejar este selector en su opción por defecto indica dicha conslusión.</p>
+            </div>
+        </div>
+
+        <div class="container"> 
+            <div class="row">
+                <div>
+                    <a style="width:100px" type="submit" class="btn btn-block btn-warning btn-solve" value="" href="/index" name="">Anotar</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <form method='post' action='/logout'>
+                        {% csrf_token %}
+                        <button style="width:100px" type="submit" class="btn btn-block btn-warning btn-solve" value="" href="" name="">Salir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
