@@ -1,0 +1,4 @@
+# Simulador de entrenamiento práctico y remoto en el manejo integral de la vía aérea para personal de salud, basado en realidad virtual (RECP)
+## Servicios Médicos El Castaño + Facultad de Ingeniería, Universidad Nacional de San Juan (UNSJ)
+La iniciativa busca innovar en la teleformación en medicina, ayudando al personal de salud en su entrenamiento en maniobras relacionadas con la vía aérea. Para esto se desarrollarán tecnologías para apoyar cursos, de modalidad presencial y remota, con contenidos teóricos y prácticos sobre manejo de la vía aérea con un abordaje integral y basado en tecnologías inmersivas como la realidad 360 y la realidad virtual, para las cuales los estudiantes utilizarán cascos de realidad virtual. El foco estará en dos etapas clave del aprendizaje: desde el inicio hasta nivel intermedio y en la actualización a largo plazo de las habilidades adquiridas.
+###### Link al vídeo de presentación del proyecto: https://youtu.be/lqbO-EBMpz8
